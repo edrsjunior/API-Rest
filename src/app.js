@@ -1,6 +1,6 @@
 const express = require('express'); /* IMPORTA O EXPRESS*/ 
 const bodyParser = require('body-parser'); /* IMPORTA O BODY PARSER*/ 
-const { use } = require('express/lib/application');
+
 
 const app = express(); //START express
 
