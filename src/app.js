@@ -1,4 +1,5 @@
-var express = require("express"); /* IMPORTA O EXPRESS*/ 
+const express = require("express"); /* IMPORTA O EXPRESS*/ 
+
 var app = express(); //START EXPRESS
 var PORT = 3003;
 

@@ -1,15 +1,17 @@
 {
     "name": "edapi",
-    "version": "1.0",
-    "description": "nothing",
+    "version": "1.0.0",
+    "description": "",
     "main": "app.js",
     "scripts": {
         "test": "echo \"ERROR: no test specified\" && exit 1",
-        "start": "node app.js"
+        "start": "node src/app.js"
     },
+    "keywords": [],
     "author": "Edilson Junior",
     "licence": "ISC",
     "dependencies": {
+        "body-parser": "^1.19.2",
         "express": "^4.17.3"
     }
 }
