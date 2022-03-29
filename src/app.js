@@ -22,12 +22,16 @@ app.get('/',(req,res)=>{
     res.send('OK');
 });
 
-app.post('/dados',(req,res)=>{
+app.post('/pessoas',(req,res)=>{
     const {id, nome, cpf,dataNasc} = req.body;
     const pessoa = {id,nome,cpf,dataNasc};
     pessoas.push(pessoa);
     return res.status(201).json(pessoas);
 
+});
+
+app.get('/pessoas',(req,res)=>{
+    return res.status(200).json(pessoas);
 });
 
 app.get('/food',(req, res)=>{                      //DEFINE UMA RESPOSTA PARA GET
