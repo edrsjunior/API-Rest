@@ -30,6 +30,13 @@ app.post('/pessoas',(req,res)=>{
 
 });
 
+app.get('/pessoas/:pessoa_id',(req,res)=>{
+    const {pessoa_id} = req.params;
+    const onePessoaGet = pessoas.find((pessoa)=>pessoa.id === pessoa_id);
+
+    return res.status(200).json(onePessoaGet);
+});
+
 app.get('/pessoas',(req,res)=>{
     return res.status(200).json(pessoas);
 });
