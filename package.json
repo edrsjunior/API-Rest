@@ -4,7 +4,8 @@
     "description": "nothing",
     "main": "api.js",
     "scripts": {
-        "test": "echo \"ERROR: no test specified\" && exit 1"
+        "test": "echo \"ERROR: no test specified\" && exit 1",
+        "start": "node src/app.js"
     },
     "author": "Edilson Junior",
     "licence": "ISC",
