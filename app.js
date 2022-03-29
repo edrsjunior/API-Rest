@@ -6,6 +6,6 @@ app.listen(process.env.PORT || 3003,()=>{                                   //CO
     console.log("Server running on port 3003");         //FAZ UM CALLBACK RETORNADO RODANDO EM....
 });
 
-app.get("/foof",(req, res)=>{                      //DEFINE UMA RESPOSTA PARA GET
+app.get("/food",(req, res)=>{                      //DEFINE UMA RESPOSTA PARA GET
     res.json(["Arroz", "feijão", "bife"]);              //req = request body | informações sobre o request
 });                                                     //res = response body | informações
