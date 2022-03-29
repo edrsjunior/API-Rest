@@ -3,6 +3,10 @@ const bodyParser = require('body-parser'); /* IMPORTA O BODY PARSER*/
 
 
 const app = express(); //START express
+app.use(express.json()); //USAR JSON
+
+//SIMULAR UM BD
+let pessoas = [];
 
 var PORT = 3003;
 
@@ -16,6 +20,14 @@ app.listen(process.env.PORT || PORT,function(err){
 
 app.get('/',(req,res)=>{
     res.send('OK');
+});
+
+app.post('/dados',(req,res)=>{
+    const {id, nome, cpf,dataNasc} = req.body;
+    const pessoa = {id,nome,cpf,dataNasc};
+    pessoas.push(pessoa);
+    return res.status(201).json(pessoas);
+
 });
 
 app.get('/food',(req, res)=>{                      //DEFINE UMA RESPOSTA PARA GET
