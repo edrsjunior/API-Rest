@@ -14,6 +14,10 @@ app.listen(process.env.PORT || PORT,function(err){
     console.log('Server running on port ',PORT);         //FAZ UM CALLBACK RETORNADO RODANDO EM....
 });
 
+app.get('/',(req,res)=>{
+    res.send('OK');
+});
+
 app.get('/food',(req, res)=>{                      //DEFINE UMA RESPOSTA PARA GET
     res.json(['Arroz', 'feijão', 'bife']);              //req = request body | informações sobre o request
 });                                                     //res = response body | informações
