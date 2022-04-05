@@ -22,7 +22,7 @@ app.listen(process.env.PORT || PORT,function(err){
 
 app.get('/',(req,res)=>{
     if (req.session.login) {
-        res.send('OK');
+        res.redirect('../view/logado.html');
     }
     else{
         res.send("Unalthorized Access");
