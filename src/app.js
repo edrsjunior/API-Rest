@@ -1,7 +1,5 @@
 const express = require('express');
-const http = require('http');
 const bcrypt = require('bcrypt');
-const path = require("path");
 const bodyParser = require('body-parser');
 const users = require('../data/data.js').userDB;
 const session = require('express-session');
