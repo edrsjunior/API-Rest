@@ -20,7 +20,13 @@ app.listen(process.env.PORT || PORT,function(err){
 });
 
 app.get('/',(req,res)=>{
-    res.send('OK');
+    if (req.session.login) {
+        res.send('OK');
+    }
+    else{
+        res.send("Unalthorized Access");
+    }
+
 });
 
 app.get('/pessoas',(req,res)=>{
@@ -32,7 +38,7 @@ app.get('/pessoas',(req,res)=>{
             return res.status(200).json(onePessoaGet);
     }
     else{
-
+        res.send("Unalthorized Access");
     }
 
     
