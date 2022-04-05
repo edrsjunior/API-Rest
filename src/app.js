@@ -44,3 +44,5 @@ app.get('/pessoas',(req,res)=>{
 app.get('/food',(req, res)=>{                      //DEFINE UMA RESPOSTA PARA GET
     res.json(['Arroz', 'feijão', 'bife']);              //req = request body | informações sobre o request
 });                                                     //res = response body | informações
+
+app.post()
