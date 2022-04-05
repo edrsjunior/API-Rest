@@ -29,11 +29,11 @@ app.get('/',(req,res)=>{
 
 });
 
-app.get('/pessoas',(req,res)=>{
+/*app.get('/pessoas',(req,res)=>{
 
     if (req.session.login) {
         const {pessoa_id} = req.params;
-        const onePessoaGet = userDB.find((pessoa)=>pessoa.id === pessoa_id);
+        const onePessoaGet = users.find((pessoa)=>pessoa.id === pessoa_id);
 
             return res.status(200).json(onePessoaGet);
     }
@@ -42,7 +42,7 @@ app.get('/pessoas',(req,res)=>{
     }
 
     
-});
+});*/
 
 app.post('/register', async (req, res) => {
     try{
