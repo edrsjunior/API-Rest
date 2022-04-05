@@ -97,7 +97,7 @@ app.post('/login',async(req,res)=>{
 
 app.get('/loginout',(req,res)=>{
     if (req.session.login) {
-        req.logout();
+        req.session.destroy();
         res.send("Session Closed");
     }
     else{
