@@ -20,7 +20,7 @@ app.listen(process.env.PORT || PORT,function(err){
 
 app.get('/',(req,res)=>{
     if (req.session.login) {
-        
+        res.send("Althorized Access");
     }
     else{
         res.send("Unalthorized Access");
