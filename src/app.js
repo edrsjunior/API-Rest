@@ -28,7 +28,7 @@ app.get('/',(req,res)=>{
 
 });
 
-/*app.get('/pessoas',(req,res)=>{
+/*app.get('/findPessoa',(req,res)=>{
 
     if (req.session.login) {
         const {pessoa_id} = req.params;
