@@ -1,16 +1,14 @@
-const express = require('express'); /* IMPORTA O EXPRESS*/ 
-const bodyParser = require('body-parser'); /* IMPORTA O BODY PARSER*/ 
-const session = require('express-session'); /*TIPO UMA SESSAO PHP*/ 
+const express = require('express');
+const http = require('http');
+const bcrypt = require('bcrypt');
+const path = require("path");
+const bodyParser = require('body-parser');
+const users = require('../data/data.js').userDB;
 
 const PORT = 3003;
 
 const app = express(); //START express
 app.use(express.json()); //USAR JSON
-
-//SIMULAR UM BD
-let userDB = [];
-
-
 
 app.use(bodyParser.json()); //API ENTEDER REQ json
 app.use(bodyParser.urlencoded({extended: false})); //API ENTENDER PARAMETROS VIA URL
