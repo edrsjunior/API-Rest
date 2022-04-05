@@ -23,19 +23,19 @@ app.get('/',(req,res)=>{
     res.send('OK');
 });
 
-app.post('/pessoas',(req,res)=>{
-    const {id, nome, cpf,dataNasc} = req.body;
-    const pessoa = {id,nome,cpf,dataNasc};
-    userDB.push(pessoa);
-    return res.status(201).json(userDB);
+app.get('/pessoas',(req,res)=>{
 
-});
+    if (req.session.login) {
+        const {pessoa_id} = req.params;
+        const onePessoaGet = userDB.find((pessoa)=>pessoa.id === pessoa_id);
 
-app.get('/pessoas/:pessoa_id',(req,res)=>{
-    const {pessoa_id} = req.params;
-    const onePessoaGet = userDB.find((pessoa)=>pessoa.id === pessoa_id);
+            return res.status(200).json(onePessoaGet);
+    }
+    else{
 
-    return res.status(200).json(onePessoaGet);
+    }
+
+    
 });
 
 app.post('/register', async (req, res) => {
@@ -54,9 +54,9 @@ app.post('/register', async (req, res) => {
             users.push(newUser);
             console.log('User list', users);
     
-            res.send("<div align ='center'><h2>Registration successful</h2></div><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
+            res.send("Registration successful");
         } else {
-            res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
+            res.send("Email already used");
         }
     } catch{
         res.send("Internal server error");
@@ -75,17 +75,14 @@ app.post('/login',async(req,res)=>{
             const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
             if (passwordMatch) {
                 let usrname = foundUser.username;
-                res.send(`<div align ='center'><h2>login successful</h2></div><br><br><br><div align ='center'><h3>Hello ${usrname}</h3></div><br><br><div align='center'><a href='./login.html'>logout</a></div>`);
+                req.session.login = usrname;
+                res.send(`login successful, hello ${usrname}`);
             } else {
-                res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align ='center'><a href='./login.html'>login again</a></div>");
+                res.send("Invalid email or password");
             }
         }
         else {
-    
-            let fakePass = `$2b$$10$ifgfgfgfgfgfgfggfgfgfggggfgfgfga`;
-            await bcrypt.compare(req.body.password, fakePass);
-    
-            res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align='center'><a href='./login.html'>login again<a><div>");
+            res.send("Invalid email or password");
         }
     } catch{
         res.send("Internal server error");
