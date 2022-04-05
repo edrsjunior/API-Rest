@@ -95,9 +95,10 @@ app.post('/login',async(req,res)=>{
     }
 });
 
-app.get('/signout',(req,res)=>{
+app.get('/loginout',(req,res)=>{
     if (req.session.login) {
         req.logout();
+        res.send("Session Closed");
     }
     else{
         res.send("NOt legged");
