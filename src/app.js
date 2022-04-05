@@ -94,3 +94,12 @@ app.post('/login',async(req,res)=>{
         res.send("Internal server error");
     }
 });
+
+app.get('/signout',(req,res)=>{
+    if (req.session.login) {
+        req.logout();
+    }
+    else{
+        res.send("NOt legged");
+    }
+});
