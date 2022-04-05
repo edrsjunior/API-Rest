@@ -62,7 +62,7 @@ app.post('/register', async (req, res) => {
             console.log('User list', users);
     
             res.send("Registration successful");
-            res.redirect('/');
+            res.redirect('../view/logado.html');
         } else {
             res.send("Email already used");
         }
