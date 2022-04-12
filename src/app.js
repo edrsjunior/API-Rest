@@ -34,7 +34,7 @@ app.get('/aluno',(req,res)=>{
         const rgaRequest = req.query.rga;
         const oneAlunoGet = users.find((aluno)=>aluno.rga === rgaRequest);
 
-        if(!oneAlunoGet)
+        if(oneAlunoGet)
         {
             return res.status(200).json(oneAlunoGet);
         }
