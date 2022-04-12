@@ -34,7 +34,16 @@ app.get('/aluno',(req,res)=>{
         const {rgaRequest} = req.params;
         const oneAlunoGet = users.find((aluno)=>aluno.rga === rgaRequest);
 
+        if(!oneAlunoGet)
+        {
             return res.status(200).json(oneAlunoGet);
+        }
+        else
+        {
+            res.send("Not Founded");
+        }
+
+            
     }
     else{
         res.send("Unalthorized Access");
