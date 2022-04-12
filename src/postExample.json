@@ -1,6 +1,10 @@
 {
-    "id": "",
-    "nome":"",
-    "cpf": 00000000000,
-    "dataNasc": 0000
+    "nome": "joaj",
+    "rga": "1313241",
+    "data_nascimento": "10/05/3002",
+    "endereco": "rua A",
+    "email": "@gamil",
+    "senha": "forte",
+    "telefone": "97 645"
+
 }
