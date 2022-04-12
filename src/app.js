@@ -41,7 +41,7 @@ app.get('/aluno',(req,res)=>{
     }
 
     
-});*/
+});
 
 app.post('/aluno', async (req, res) => {
     try{
