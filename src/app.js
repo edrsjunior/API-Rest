@@ -31,7 +31,7 @@ app.get('/',(req,res)=>{
 app.get('/aluno',(req,res)=>{
 
     if (req.session.login) {
-        const {rgaRequest} = req.params;
+        const rgaRequest = req.query.rga;
         const oneAlunoGet = users.find((aluno)=>aluno.rga === rgaRequest);
 
         if(!oneAlunoGet)
@@ -94,7 +94,7 @@ app.post('/login',async(req,res)=>{
             if (passwordMatch) {
                 let usrname = foundUser.rga;
                 req.session.login = usrname;
-                res.send(`login successful, hello ${usrname}`);
+                res.send(`login successful, hello ${foundUser.nome}`);
             } else {
                 res.send("Invalid email or password");
             }
