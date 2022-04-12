@@ -62,6 +62,7 @@ app.post('/aluno', async (req, res) => {
             let newUser = {
                 id: Date.now(),
                 rga: req.body.rga,
+                nome: req.body.nome,
                 dataNasc: req.body.data_nascimento,
                 endereco: req.body.endereco,
                 email: req.body.email,
