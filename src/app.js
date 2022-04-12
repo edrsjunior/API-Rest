@@ -48,7 +48,7 @@ app.post('/register', async (req, res) => {
         let foundUser = users.find((data) => req.body.rga === data.rga);
         if (!foundUser) {
     
-            let hashPassword = await bcrypt.hash(req.body.password, 10);
+            let hashPassword = await bcrypt.hash(req.body.senha, 10);
     
             let newUser = {
                 id: Date.now(),
@@ -75,15 +75,15 @@ app.post('/register', async (req, res) => {
 
 app.post('/login',async(req,res)=>{
     try{
-        let foundUser = users.find((data) => req.body.email === data.email);
+        let foundUser = users.find((data) => req.body.rga === data.rga);
         if (foundUser) {
     
-            let submittedPass = req.body.password; 
+            let submittedPass = req.body.senha; 
             let storedPass = foundUser.password; 
     
             const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
             if (passwordMatch) {
-                let usrname = foundUser.username;
+                let usrname = foundUser.rga;
                 req.session.login = usrname;
                 res.send(`login successful, hello ${usrname}`);
             } else {
