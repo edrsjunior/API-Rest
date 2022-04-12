@@ -45,16 +45,19 @@ app.get('/',(req,res)=>{
 
 app.post('/register', async (req, res) => {
     try{
-        let foundUser = users.find((data) => req.body.email === data.email);
+        let foundUser = users.find((data) => req.body.rga === data.rga);
         if (!foundUser) {
     
             let hashPassword = await bcrypt.hash(req.body.password, 10);
     
             let newUser = {
                 id: Date.now(),
-                username: req.body.username,
+                rga: req.body.rga,
+                dataNasc: req.body.data_nascimento,
+                endereco: req.body.endereco,
                 email: req.body.email,
                 password: hashPassword,
+                telefone: req.body.telefone
             };
             users.push(newUser);
             console.log('User list', users);
