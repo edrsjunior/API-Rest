@@ -74,7 +74,7 @@ app.post('/aluno', async (req, res) => {
             res.send("Registration successful");
             
         } else {
-            res.send("Email already used");
+            res.send("RGA already used");
         }
     } catch{
         res.send("Internal server error");
