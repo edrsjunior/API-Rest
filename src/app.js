@@ -43,7 +43,7 @@ app.get('/',(req,res)=>{
     
 });*/
 
-app.post('/register', async (req, res) => {
+app.post('/aluno', async (req, res) => {
     try{
         let foundUser = users.find((data) => req.body.rga === data.rga);
         if (!foundUser) {
