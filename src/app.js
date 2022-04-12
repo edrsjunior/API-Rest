@@ -28,13 +28,13 @@ app.get('/',(req,res)=>{
 
 });
 
-/*app.get('/findPessoa',(req,res)=>{
+app.get('/aluno',(req,res)=>{
 
     if (req.session.login) {
-        const {pessoa_id} = req.params;
-        const onePessoaGet = users.find((pessoa)=>pessoa.id === pessoa_id);
+        const {rgaRequest} = req.params;
+        const oneAlunoGet = users.find((aluno)=>aluno.rga === rgaRequest);
 
-            return res.status(200).json(onePessoaGet);
+            return res.status(200).json(oneAlunoGet);
     }
     else{
         res.send("Unalthorized Access");
