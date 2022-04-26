@@ -1,31 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const users = require('../data/data.js').userDB;
+const bd = require('../data/queries.js');
 const session = require('express-session');
 
 const PORT = 3003;
 
 const app = express(); //START express
 app.use(express.json()); //USAR JSON
-
-var bd = require('pg');
-var urlBD = process.env.DATABASE_URL;
-
-bd.connect(urlBD, function(err, client, done) {
-
-    if (err) {
-      return console.error('error fetching client from pool', err);
-    }
-    client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-      done();
-      if (err) {
-        return console.error('error running query', err);
-      }
-      console.log(result.rows[0].number);
-    });
-  
-  });
 
 app.use(bodyParser.json()); //API ENTEDER REQ json
 app.use(bodyParser.urlencoded({extended: false})); //API ENTENDER PARAMETROS VIA URL
@@ -70,6 +52,16 @@ app.get('/aluno',(req,res)=>{
     
 });
 
+app.get('/alunoAll', (req, res)=>{
+    bd.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).json(results.rows)
+      })
+    }
+});
+
 app.post('/aluno', async (req, res) => {
     try{
         let foundUser = users.find((data) => req.body.rga === data.rga);
@@ -103,6 +95,8 @@ app.post('/aluno', async (req, res) => {
 
 app.post('/login',async(req,res)=>{
     try{
+
+
         let foundUser = users.find((data) => req.body.rga === data.rga);
         if (foundUser) {
     
