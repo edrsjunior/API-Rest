@@ -26,7 +26,7 @@ db.connect(urlBD, function(err, client, done) {
   }
 
   const getUserById = (request, response) => {
-    const id = parseInt(request.params.ega)
+    const id = parseInt(request.params.rga)
   
     db.query('SELECT * FROM alunos WHERE id = $1', [id], (error, results) => {
       if (error) {
@@ -52,7 +52,7 @@ db.connect(urlBD, function(err, client, done) {
     const { nome, rga, data_nascimento,endereco,email,senha,telefone } = request.body
   
     db.query(
-      'UPDATE alunos SET name = $1, data_nascimento = $2, endereco = $3, email = $4, senha = $5, telefone = $6 WHERE id = $7',
+      'UPDATE alunos SET name = $1, data_nascimento = $2, endereco = $3, email = $4, senha = $5, telefone = $6 WHERE rga = $7',
       [nome, data_nascimento,endereco,email,senha,telefone, id],
       (error, results) => {
         if (error) {
@@ -75,9 +75,9 @@ db.connect(urlBD, function(err, client, done) {
   }
 
 const login = (request, response) => {
-    const id = parseInt(request.params.ega)
-  
-    db.query('SELECT * FROM alunos WHERE id = $1', [id], (error, results) => {
+    const id = parseInt(request.params.rga)
+    const senha = request.body.senha
+    db.query('SELECT * FROM alunos WHERE id = $1 AND senha=$2', [id,senha], (error, results) => {
       if (error) {
         throw error
       }
