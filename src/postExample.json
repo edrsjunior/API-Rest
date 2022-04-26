@@ -8,3 +8,14 @@
     "telefone": "97 645"
 
 }
+
+create table alunos(
+  nome VARCHAR(50),
+  rga int PRIMARY KEY NOT NULL,
+  data_nascimento VARCHAR(8),
+  endereco VARCHAR(100),
+  email VARCHAR(20),
+  senha VARCHAR(50),
+  telefone VARCHAR(15)
+  
+);
