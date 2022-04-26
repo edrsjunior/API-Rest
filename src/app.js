@@ -28,10 +28,10 @@ app.get('/',(req,res)=>{
 
 });
 
-app.get('/aluno',(req,res)=>{
+app.get('/alunos',(req,res)=>{
 
     if (req.session.login) {
-        
+        bd.getUsers;
 
             
     }
@@ -42,40 +42,68 @@ app.get('/aluno',(req,res)=>{
     
 });
 
-app.get('/alunoAll', (req, res)=>{
-    bd.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-        if (error) {
-          throw error
-        }
-        response.status(200).json(results.rows)
-      })
+app.get('/alunos/:id', (req, res)=>{
+    if (req.session.login) {
+        bd.getUserById;
+
+            
+    }
+    else{
+        res.send("Unalthorized Access");
     }
 });
 
-app.post('/aluno', async (req, res) => {
+app.post('/alunos', async (req, res) => {
     try{
-        let foundUser = users.find((data) => req.body.rga === data.rga);
+        let foundUser = bd.getUserById;
         if (!foundUser) {
     
             let hashPassword = await bcrypt.hash(req.body.senha, 10);
     
-            let newUser = {
-                id: Date.now(),
-                rga: req.body.rga,
-                nome: req.body.nome,
-                dataNasc: req.body.data_nascimento,
-                endereco: req.body.endereco,
-                email: req.body.email,
-                password: hashPassword,
-                telefone: req.body.telefone
-            };
-            users.push(newUser);
-            console.log('User list', users);
+            bd.createUser;
     
             res.send("Registration successful");
             
         } else {
             res.send("RGA already used");
+        }
+    } catch{
+        res.send("Internal server error");
+    }
+});
+
+app.put('/alunos', async (req, res) => {
+    try{
+        let foundUser = bd.getUserById;
+        if (foundUser) {
+    
+            let hashPassword = await bcrypt.hash(req.body.senha, 10);
+    
+            bd.updateUser;
+    
+            res.send("Registration successful");
+            
+        } else {
+            res.send("RGA not founded");
+        }
+    } catch{
+        res.send("Internal server error");
+    }
+});
+
+app.delete('/alunos', async (req, res) => {
+    try{
+        let foundUser = bd.getUserById;
+        if (foundUser) {
+    
+            let hashPassword = await bcrypt.hash(req.body.senha, 10);
+    
+            bd.deleteUser;
+    
+            res.send("delete successful");
+            
+        } else {
+            res.send("RGA not founded");
         }
     } catch{
         res.send("Internal server error");
