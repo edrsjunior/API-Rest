@@ -9,6 +9,24 @@ const PORT = 3003;
 const app = express(); //START express
 app.use(express.json()); //USAR JSON
 
+var bd = require('pg');
+var urlBD = process.env.DATABASE_URL;
+
+bd.connect(urlBD, function(err, client, done) {
+
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT $1::int AS number', ['1'], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      console.log(result.rows[0].number);
+    });
+  
+  });
+
 app.use(bodyParser.json()); //API ENTEDER REQ json
 app.use(bodyParser.urlencoded({extended: false})); //API ENTENDER PARAMETROS VIA URL
 app.use(session({secret:'asgfagag456as47g98a'})); //SEGREDO DA SENHA, PARAMETRO BASE
