@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const bd = require('../data/queries.js');
 const session = require('express-session');
@@ -58,7 +58,6 @@ app.post('/alunos', async (req, res) => {
         let foundUser = bd.getUserById;
         if (!foundUser) {
     
-            let hashPassword = await bcrypt.hash(req.body.senha, 10);
     
             bd.createUser;
     
@@ -76,8 +75,7 @@ app.put('/alunos', async (req, res) => {
     try{
         let foundUser = bd.getUserById;
         if (foundUser) {
-    
-            let hashPassword = await bcrypt.hash(req.body.senha, 10);
+
     
             bd.updateUser;
     
@@ -95,8 +93,6 @@ app.delete('/alunos', async (req, res) => {
     try{
         let foundUser = bd.getUserById;
         if (foundUser) {
-    
-            let hashPassword = await bcrypt.hash(req.body.senha, 10);
     
             bd.deleteUser;
     
