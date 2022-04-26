@@ -31,17 +31,7 @@ app.get('/',(req,res)=>{
 app.get('/aluno',(req,res)=>{
 
     if (req.session.login) {
-        const rgaRequest = req.query.rga;
-        const oneAlunoGet = users.find((aluno)=>aluno.rga === rgaRequest);
-
-        if(oneAlunoGet)
-        {
-            return res.status(200).json(oneAlunoGet);
-        }
-        else
-        {
-            res.send("Not Founded");
-        }
+        
 
             
     }
