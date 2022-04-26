@@ -91,4 +91,5 @@ const login = (request, response) => {
     createUser,
     updateUser,
     deleteUser,
+    login,
   }

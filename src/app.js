@@ -115,24 +115,15 @@ app.post('/login',async(req,res)=>{
     try{
 
 
-        let foundUser = users.find((data) => req.body.rga === data.rga);
+        let foundUser =  bd.login;
         if (foundUser) {
-    
-            let submittedPass = req.body.senha; 
-            let storedPass = foundUser.password; 
-    
-            const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
-            if (passwordMatch) {
-                let usrname = foundUser.rga;
-                req.session.login = usrname;
-                res.send(`login successful, hello ${foundUser.nome}`);
+            req.session.login = request.params.rga;
+             res.send("login successful");
             } else {
                 res.send("Invalid email or password");
             }
-        }
-        else {
-            res.send("Invalid email or password");
-        }
+        
+       
     } catch{
         res.send("Internal server error");
     }
